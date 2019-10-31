@@ -1,0 +1,53 @@
+{
+  "name": "quickbooks-js",
+  "version": "1.0.0",
+  "author": "Rappid Development LLC",
+  "description": "A SOAP service implemented in Node.js that communicates with QuickBook's Web Connector",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RappidDevelopment/quickbooks-js"
+  },
+  "bugs": {
+    "url": "https://github.com/RappidDevelopment/quickbooks-js/issues"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "bin/run",
+    "cover": "istanbul cover _mocha",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "dev": "nodemon bin/run",
+    "api": "nodemon lib/api"
+  },
+  "keywords": [
+    "qbwc",
+    "QuickBooks",
+    "QuickBooks Web Connector"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "amqplib": "^0.5.5",
+    "arraylist": "^0.1.0",
+    "cors": "^2.8.5",
+    "data2xml": "^1.2.5",
+    "es6-promise": "^4.2.8",
+    "express": "^4.17.1",
+    "isomorphic-fetch": "^2.2.1",
+    "node-uuid": "1.4.3",
+    "nodemon": "^1.19.1",
+    "pg": "^7.12.1",
+    "pg-pool": "^2.0.7",
+    "semver": "^6.3.0",
+    "soap": "^0.29.0",
+    "xml-js": "^1.6.11",
+    "xml-query": "^1.5.0",
+    "xml-reader": "^2.4.3",
+    "xml2js": "^0.4.19"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.14",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.2",
+    "mocha-lcov-reporter": "^1.2.0"
+  }
+}

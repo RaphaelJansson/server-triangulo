@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<QBWCXML>
+<AppName>Cora</AppName>
+<AppID></AppID>
+<AppURL>http://localhost:8000/wsdl</AppURL>
+<AppDescription>Cora Sistemas</AppDescription>
+<AppSupport>http://developer.intuit.com</AppSupport>
+<UserName>admin</UserName>
+<OwnerID>{eb6bdd66-4512-439d-960b-413ba67c4d65}</OwnerID>
+<FileID>{90A44FB5-33D9-4815-AC85-BC87A7E7YE56}</FileID>		
+<QBType>QBFS</QBType>													
+<Scheduler>
+<RunEveryNMinutes>1</RunEveryNMinutes>																			
+</Scheduler>
+</QBWCXML>

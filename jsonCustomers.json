@@ -1,0 +1,171 @@
+{
+    "_declaration": {
+        "_attributes": {
+            "version": "1.0"
+        }
+    },
+    "QBXML": {
+        "QBXMLMsgsRs": {
+            "CustomerQueryRs": {
+                "_attributes": {
+                    "statusCode": "0",
+                    "statusSeverity": "Info",
+                    "statusMessage": "Status OK"
+                },
+                "CustomerRet": {
+                    "ListID": {
+                        "_text": "150000-933272658"
+                    },
+                    "TimeCreated": {
+                        "_text": "1999-07-29T15:24:18-03:00"
+                    },
+                    "TimeModified": {
+                        "_text": "2022-12-15T02:59:34-03:00"
+                    },
+                    "EditSequence": {
+                        "_text": "1671080374"
+                    },
+                    "Name": {
+                        "_text": "Abercrombie, Kristy"
+                    },
+                    "FullName": {
+                        "_text": "Abercrombie, Kristy"
+                    },
+                    "IsActive": {
+                        "_text": "true"
+                    },
+                    "Sublevel": {
+                        "_text": "0"
+                    },
+                    "Salutation": {
+                        "_text": "Mrs."
+                    },
+                    "FirstName": {
+                        "_text": "Kristy"
+                    },
+                    "LastName": {
+                        "_text": "Abercrombie"
+                    },
+                    "BillAddress": {
+                        "Addr1": {
+                            "_text": "Kristy Abercrombie"
+                        },
+                        "Addr2": {
+                            "_text": "5647 Cypress Hill Rd"
+                        },
+                        "City": {
+                            "_text": "Bayshore"
+                        },
+                        "State": {
+                            "_text": "CA"
+                        },
+                        "PostalCode": {
+                            "_text": "94326"
+                        }
+                    },
+                    "BillAddressBlock": {
+                        "Addr1": {
+                            "_text": "Kristy Abercrombie"
+                        },
+                        "Addr2": {
+                            "_text": "5647 Cypress Hill Rd"
+                        },
+                        "Addr3": {
+                            "_text": "Bayshore CA 94326"
+                        }
+                    },
+                    "ShipAddress": {
+                        "Addr1": {
+                            "_text": "Kristy Abercrombie"
+                        },
+                        "Addr2": {
+                            "_text": "5647 Cypress Hill Rd"
+                        },
+                        "City": {
+                            "_text": "Bayshore"
+                        },
+                        "State": {
+                            "_text": "CA"
+                        },
+                        "PostalCode": {
+                            "_text": "94326"
+                        }
+                    },
+                    "ShipAddressBlock": {
+                        "Addr1": {
+                            "_text": "Kristy Abercrombie"
+                        },
+                        "Addr2": {
+                            "_text": "5647 Cypress Hill Rd"
+                        },
+                        "Addr3": {
+                            "_text": "Bayshore, CA 94326"
+                        }
+                    },
+                    "Phone": {
+                        "_text": "415-555-6579"
+                    },
+                    "Email": {
+                        "_text": "kristy@samplename.com"
+                    },
+                    "CustomerTypeRef": {
+                        "ListID": {
+                            "_text": "20000-933272658"
+                        },
+                        "FullName": {
+                            "_text": "Residential"
+                        }
+                    },
+                    "TermsRef": {
+                        "ListID": {
+                            "_text": "10000-933272658"
+                        },
+                        "FullName": {
+                            "_text": "Net 30"
+                        }
+                    },
+                    "Balance": {
+                        "_text": "0,00"
+                    },
+                    "TotalBalance": {
+                        "_text": "0,00"
+                    },
+                    "SalesTaxCodeRef": {
+                        "ListID": {
+                            "_text": "10000-999022286"
+                        },
+                        "FullName": {
+                            "_text": "Tax"
+                        }
+                    },
+                    "ItemSalesTaxRef": {
+                        "ListID": {
+                            "_text": "2E0000-933272656"
+                        },
+                        "FullName": {
+                            "_text": "San Tomas"
+                        }
+                    },
+                    "AccountNumber": {
+                        "_text": "91-431"
+                    },
+                    "JobStatus": {
+                        "_text": "None"
+                    },
+                    "JobStartDate": {
+                        "_text": "2016-09-23"
+                    },
+                    "JobProjectedEndDate": {
+                        "_text": "2016-09-23"
+                    },
+                    "JobEndDate": {
+                        "_text": "2016-09-23"
+                    },
+                    "Notes": {
+                        "_text": "9/15/2003:  Send Kristy estimate for den remodel.\n\n9/20/2003:  Called Kristy to discuss job:  Kristy is not interested at this time.  Estimate was competitive, not using another firm.\n\n10/15/2003:  Further discussion of bathroom remodel.  I offered 10% discount on project if she would sign the contract now."
+                    }
+                }
+            }
+        }
+    }
+}
