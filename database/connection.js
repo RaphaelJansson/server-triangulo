@@ -3,19 +3,24 @@ const { Pool } = require('pg')
 const isProduction = process.env.NODE_ENV === 'production'
 var moment = require('moment-timezone');
 
-const pool = new Pool({
-    connectionString: 'postgres://ffawhzuijsjckv:200cbf24087870f4dc18b026b03009a45fb3d50a55c01911ad0c5b8a3f99011c@ec2-174-129-194-188.compute-1.amazonaws.com:5432/d3iabl5nmotufc',
-    // connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
-    ssl: 'production',
-})
+/**
+ * FIXME:
+ */
 
 // const pool = new Pool({
-//     user: "postgres",
-//     host: "localhost",
-//     database: "cora",
-//     password: "admin",
-//     port: 5432,
-// });
+//     connectionString: 'postgres://ffawhzuijsjckv:200cbf24087870f4dc18b026b03009a45fb3d50a55c01911ad0c5b8a3f99011c@ec2-174-129-194-188.compute-1.amazonaws.com:5432/d3iabl5nmotufc',
+//     // connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
+//     ssl: 'production',
+// })
+
+const pool = new Pool({
+    user: "postgres",
+    host: "localhost",
+    database: "cora",
+    password: "admin",
+    port: 5432,
+});
+
 
 module.exports = {
     store: async function (data) {
@@ -28,9 +33,9 @@ module.exports = {
             try {
                 user = await pool.query(`SELECT * FROM users where iduser = '${iduser}'`)
                 if (user.rows.length === 0) {
-                    await pool.query(`insert into users (iduser,username,email,companyName,status) values('${iduser}','${name}','${email}','${companyName}','${status}')`)
+                    await pool.query(`insert into users (iduser,username,email,companyName,status,permission,id_father) values('${iduser}','${name}','${email}','${companyName}','${status}',3,0)`)
                 } else {
-                    await pool.query(`UPDATE users SET username = '${name}', email = '${email}', companyName = '${companyName}', status = '${status}'  WHERE iduser = '${iduser}'`)
+                    await pool.query(`UPDATE users SET username = '${name}', email = '${email}', companyName = '${companyName}', status = '${status}', id_father = 0  WHERE iduser = '${iduser}'`)
                 }
             } catch (e) {
                 console.log(e);

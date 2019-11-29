@@ -251,11 +251,15 @@ module.exports = {
         await connect.storeAddress(arrayaddress)
     },
 
+    /**
+     * FIXME:
+     *  /email.neworder(refnumber,customer)
+     */
     responseSalesOrdersAdd: async function (json) {
         memo = json.QBXML.QBXMLMsgsRs.SalesOrderAddRs.SalesOrderRet.Memo._text;
         refnumber = json.QBXML.QBXMLMsgsRs.SalesOrderAddRs.SalesOrderRet.RefNumber._text;
         customer = json.QBXML.QBXMLMsgsRs.SalesOrderAddRs.SalesOrderRet.CustomerRef.FullName._text;
-        email.neworder(refnumber,customer)
+        //email.neworder(refnumber,customer)
         await connect.salesordersadd(memo, refnumber)
     },
 

@@ -3,6 +3,7 @@ var convertjson = require('xml-js');
 var connect = require('../../database/connection')
 var webconnector = require('./qbxml/responseWEB')
 var moment = require('moment-timezone');
+var removeAccents = require('remover-acentos');
 
 
 
@@ -20,17 +21,9 @@ module.exports = {
     handleResponse: async function (response) {
         try {
             const json = JSON.parse(convertjson.xml2json(response, { compact: true }));
-            /**
-             * FIXME:
-             * mudar forma de popular tabela categoria
-             * estava com problema no listid do parentref
-             * fiz um console no servidor e todos tem o listid do pararentref
-             * 
-             * ver porque dava erro.
-             */
+
             if (!(json.QBXML.QBXMLMsgsRs.ItemInventoryQueryRs === undefined)) {
                 await webconnector.responseItensInventoryQuery(json)
-                await connect.settime()
             } else if (json.QBXML.QBXMLMsgsRs.CustomerQueryRs != undefined) {
                 await webconnector.responseCostumersQuery(json)
             } else if (json.QBXML.QBXMLMsgsRs.SalesOrderAddRs != undefined) {
@@ -43,6 +36,7 @@ module.exports = {
                 await webconnector.responseListDelOrders(json)
             } else if (json.QBXML.QBXMLMsgsRs.ItemSitesQueryRs != undefined) {
                 await webconnector.responseItensSitesInventoryQuery(json)
+                await connect.settime()
             }
 
         } catch (e) {
@@ -80,6 +74,12 @@ function buildRequests(callback) {
                 requests.push(Ordered);
 
                 //Cria ordens que estão no banco de dados para o quickbooks
+                /**
+                 * FIXME:
+                            <InventorySiteRef>
+                                <ListID>8000000B-1561577328</ListID>
+                            </InventorySiteRef>
+                    */
                 if (back != null) {
                     for (const order in back) {
                         var textfinal = `
@@ -87,13 +87,14 @@ function buildRequests(callback) {
                     <FullName>${back[order].customer}</FullName>
                 </CustomerRef>
                 <ShipAddress>
-                    <Addr1>${back[order].addr1.replace(/[\/\\'"ç]/g, '')}</Addr1>
-                    <Addr2>${back[order].addr2.replace(/[\/\\'"ç]/g, '')}</Addr2>
-                    <Addr3>${back[order].addr3.replace(/[\/\\'"ç]/g, '')}</Addr3>
-                    <Addr4>${back[order].addr4.replace(/[\/\\'"ç]/g, '')}</Addr4>
-                    <City >${back[order].city}</City> 
-                    <State >${back[order].state}</State> 
-                    <PostalCode >${back[order].postalcode}</PostalCode> 
+                    <Addr1>${removeAccents(back[order].addr1.replace(/[\/\\'"ç]/g, ''))}</Addr1>
+                    <Addr2>${removeAccents(back[order].addr2.replace(/[\/\\'"ç]/g, ''))}</Addr2>
+                    <Addr3>${removeAccents(back[order].addr3.replace(/[\/\\'"ç]/g, ''))}</Addr3>
+                    <Addr4>${removeAccents(back[order].addr4.replace(/[\/\\'"ç]/g, ''))}</Addr4>
+                    <City>${removeAccents(back[order].city.replace(/[\/\\'"ç]/g, ''))}</City> 
+                    <State>${removeAccents(back[order].state.replace(/[\/\\'"ç]/g, ''))}</State> 
+                    <PostalCode >${back[order].postalcode}</PostalCode>
+                    <Note>${removeAccents(back[order].note.replace(/[\/\\'"ç]/g, ''))}</Note>
                 </ShipAddress>
                 <PONumber >${back[order].po}</PONumber>
                 <Memo >${back[order].memo}</Memo>
@@ -109,9 +110,6 @@ function buildRequests(callback) {
                                 <FullName>${back[order].products[0][product].name}</FullName>
                             </ItemRef>
                             <Quantity>${back[order].products[0][product].quantity}</Quantity>
-                            <InventorySiteRef>
-                                <ListID>8000000B-1561577328</ListID>
-                            </InventorySiteRef>
                         </SalesOrderLineAdd>`
                                 var textproduct = textproduct + text
                             } else {
@@ -121,6 +119,7 @@ function buildRequests(callback) {
                                 <ListID>${back[order].products[0][product].listid}</ListID>
                             </ItemRef>
                             <Quantity>${back[order].products[0][product].quantity}</Quantity>
+                            
                         </SalesOrderLineAdd>`
                                 var textproduct = textproduct + text
                             }
@@ -189,6 +188,7 @@ function buildRequests(callback) {
                 );
                 requests.push(ListMessage);
 
+
                 //Busca valor do estoque no site especifico e altera o valor nos produtos, sempre roda.
                 var ItensInventorySite = convert(
                     'QBXML',
@@ -223,7 +223,6 @@ function buildRequests(callback) {
                     }
                 );
                 requests.push(ItensInventory);
-
                 
                 return callback(null, requests);
             })
